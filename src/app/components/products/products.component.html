@@ -1,0 +1,56 @@
+<div class="card componentStyle">
+    <div class="row filterCard">
+        <div class="col-md-3">
+            <select class="form-control" [ngModel]="selectedCategory" (change)="changeCategory($event)">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [ngValue]="category.id">
+                    {{ category.name }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control ml-2" type="text" placeholder="Search product..." name="searchTerm"
+                [(ngModel)]="searchTerm" (keyup)="loadProducts()" />
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row p-3">
+        <ng-container *ngFor="let product of products; let _index = index">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" [src]="product.imageUrl" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ product.title }}</h6>
+                        <p class="card-text">{{ product.price | currency:'INR'}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button *ngIf="getQuantity(product) === 0; else updateQuantity" (click)="addToCart(product)"
+                            class="btn btn-secondary">
+                            <i class="bi bi-cart"></i> Add to Cart
+                        </button>
+                        <ng-template #updateQuantity>
+                            <div class="row">
+                                <div class="col-3" style="display: grid;">
+                                    <button (click)=" removeFromCart(product)" class="btn btn-secondary">
+                                        <i class="bi bi-dash-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="col text-center quantity">
+                                    {{ getQuantity(product) }} in cart
+                                </div>
+                                <div class="col-3" style="display: grid;">
+                                    <button (click)="addToCart(product)" class="btn btn-secondary">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="(_index + 1) % 4 === 0" class="w-100"></div>
+        </ng-container>
+    </div>
+</div>
