@@ -17,11 +17,11 @@ export class RegistrationComponent {
     registerAccount() {
         this.authService.register(this.userDetail)
             .then(response => {
-                this.toastr.success('Registration successful..!');
+                this.toastr.success('Registration successful...!');
                 this.router.navigate(['/login']);
             })
             .catch(error => {
-                this.toastr.error('Internal server error..!');
+                this.toastr.error('Internal server error...!');
             })
     }
 }
