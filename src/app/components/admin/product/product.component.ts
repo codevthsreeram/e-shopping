@@ -35,9 +35,9 @@ export class ProductComponent implements OnInit {
         this.product = new Product();
         this.productForm.reset();
     }
-    editProduct(_Product: Product) {
+    editProduct(_product: Product) {
         this.modalHeader = 'Edit Product';
-        this.product = _Product;
+        this.product = _product;
     }
     deleteProduct(id: any) {
         this._productService.delete(id)
@@ -86,6 +86,10 @@ export class ProductComponent implements OnInit {
                 });
                 this.showLoader = false;
             })
+    }
+    getCategory(categoryId: string) {
+        let _itemIndex = this.categories.findIndex(x => x.id === categoryId);
+        return this.categories[_itemIndex].name;
     }
     loadCategories() {
         this._categoryService.read()

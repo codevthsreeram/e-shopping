@@ -32,9 +32,10 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
 import { MyDashboardComponent } from './components/my-dashboard/my-dashboard.component';
 import { AdminDashboardComponent } from './components/admin/dashboard/admin-dashboard.component';
 import { UnAuthorizedComponent } from './components/un-authorized/un-authorized.component';
-import { AuthGuard } from './components/guards/auth.guard';
-import { AdminGuard } from './components/guards/admin.guard';
+
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

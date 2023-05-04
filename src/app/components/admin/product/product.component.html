@@ -30,7 +30,7 @@
                             <tr *ngFor="let product of products  | slice: (page-1) * pageSize : page * pageSize">
                                 <td> <img [src]="product.imageUrl" class="rounded-circle" width="30" height="30"></td>
                                 <td>{{ product.title }}</td>
-                                <td>{{ product.category }}</td>
+                                <td>{{ getCategory(product.category) }}</td>
                                 <td>{{ product.price | currency:'INR' }}</td>
                                 <td style="width: 15%;">
                                     <button (click)="editProduct(product)" data-bs-toggle="modal"
@@ -80,11 +80,9 @@
                             <input formControlName="price" [(ngModel)]="product.price" class="form-control" name="price"
                                 placeholder="Enter the price" type="number">
                         </div>
-
                         <div class="mb-3">
                             <select formControlName="category" class="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example" [(ngModel)]="product.category"
-                                aria-placeholder="Category" name="category" class="form-control">
+                                [(ngModel)]="product.category" name="category" class="form-control">
                                 <option *ngFor="let _category of categories" [value]="_category.id">
                                     {{ _category.name }}
                                 </option>
