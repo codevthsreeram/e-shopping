@@ -1,11 +1,7 @@
 .sticky-top {
   top: 0px;
 }
+
 .dropdown-toggle {
   cursor: pointer;
-}
-
-.a-disabled {
-  pointer-events: none;
-  cursor: default;
 }

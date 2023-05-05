@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { ShoppingCartItem } from '../models/shopping-cart-item';
-import { AuthService } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 
@@ -12,9 +11,10 @@ export class ShoppingCartService {
     private cartCount = new BehaviorSubject<number>(0);
     cartCount$ = this.cartCount.asObservable();
 
-    constructor(private authService: AuthService) {
+    constructor() {
         this.loadCartItems();
     }
+
     get CartItems() {
         this.loadCartItems();
         return this.cartItems;
@@ -25,7 +25,6 @@ export class ShoppingCartService {
     get CartItemsTotal() {
         return this._cartItemsTotal;
     }
-
     addItemToCart(_cartItem: ShoppingCartItem) {
         this.loadCartItems();
         const _itemIndex = this.cartItems.findIndex(x => x.id === _cartItem.id);
@@ -52,35 +51,23 @@ export class ShoppingCartService {
         this.saveCartItem();
     }
     clearCartItems() {
-        let cartItemsStorageKey = this.authService.loggedInUserId + 'cart_items';
-        let cartItemsCountKey = this.authService.loggedInUserId + 'cart_count';
-        localStorage.removeItem(cartItemsStorageKey);
-        localStorage.removeItem(cartItemsCountKey);
+        localStorage.removeItem('cart_items');
+        localStorage.removeItem('cart_count');
         this.loadCartItems();
     }
     loadCartItems() {
-        let cartItemsStorageKey = this.authService.loggedInUserId + 'cart_items';
-
-        this.cartItems = JSON.parse(localStorage.getItem(cartItemsStorageKey) || '[]');
-
+        this.cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
         let _totalQty = 0;
         this.cartItems.forEach(_item => { _totalQty += _item.quantity });
-
         this.cartCount.next(_totalQty);
-
         let _totalPrice = 0;
         this.cartItems.forEach(_item => { _totalPrice += _item.totalPrice });
-
         this._cartItemsQuantity = _totalQty;
         this._cartItemsTotal = _totalPrice;
     }
     saveCartItem() {
-        let cartItemsStorageKey = this.authService.loggedInUserId + 'cart_items';
-        let cartItemsCountKey = this.authService.loggedInUserId + 'cart_count';
-
-        localStorage.setItem(cartItemsStorageKey, JSON.stringify(this.cartItems));
-        localStorage.setItem(cartItemsCountKey, this._cartItemsQuantity.toString());
-
+        localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
+        localStorage.setItem('cart_count', this._cartItemsQuantity.toString());
         this.cartCount.next(this._cartItemsQuantity);
     }
 }

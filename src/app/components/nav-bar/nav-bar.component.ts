@@ -21,6 +21,6 @@ export class NavBarComponent {
         localStorage.removeItem('loggedInUserId');
         localStorage.removeItem('isAdmin');
 
-        this.router.navigate(['/login']);
+        this.router.navigate(['/products']);
     }
 }

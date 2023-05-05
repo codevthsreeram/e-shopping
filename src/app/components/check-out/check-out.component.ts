@@ -42,9 +42,10 @@ export class CheckOutComponent implements OnInit {
 
         this._orderService.create(order)
             .then((response) => {
+                console.log(response)
                 this._cartService.clearCartItems();
                 this.toastr.success('Order placed successfully...!');
-                this.router.navigate(['/order-success']);
+                this.router.navigate(['/order-success', response.id]);
             })
             .catch((error: any) => {
                 this.toastr.error('Un-handled exception occured...!');

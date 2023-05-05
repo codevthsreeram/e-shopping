@@ -36,23 +36,20 @@ import { UnAuthorizedComponent } from './components/un-authorized/un-authorized.
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { AdminModule } from './admin.module';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: ProductsComponent },
+  { path: 'products', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
   { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
   { path: 'un-authorized', component: UnAuthorizedComponent },
   { path: 'my-dashboard', component: MyDashboardComponent, canActivate: [AuthGuard] },
   { path: 'order-detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
-  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
-  { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
-  { path: 'admin/categories', component: CategoryComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/products', component: ProductComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
+  { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -63,19 +60,12 @@ const routes: Routes = [
     RegistrationComponent,
     NavBarComponent,
     ProductsComponent,
-    CategoryComponent,
-    ProductComponent,
     ShoppingCartComponent,
     CheckOutComponent,
     OrderSuccessComponent,
-    AdminOrdersComponent,
     MyOrdersComponent,
     OrderDetailComponent,
-    BarChartComponent,
-    DonutChartComponent,
-    PieChartComponent,
     MyDashboardComponent,
-    AdminDashboardComponent,
     NotFoundComponent
   ],
   imports: [
@@ -86,6 +76,7 @@ const routes: Routes = [
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot(routes),
+    AdminModule,
     NgbModule
   ],
   providers: [AuthService, CategoryService, ProductService, ShoppingCartService, OrderService, AuthGuard, AdminGuard],
