@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-$primary-color: rgb(55, 158, 11);
-$primary-color-hover: rgb(55, 158, 11);
+$primary-color: rgb(158, 11, 85);
+$primary-color-hover: rgb(158, 11, 85);
 
 h1,
 h2,
@@ -89,7 +89,11 @@ select:focus {
     background-color: $primary-color !important;
 }
 
-.dropdown-item.active,
+.dropdown-item:hover {
+    color: #e7e7e7 !important;
+}
+
+.dropdown-item:hover,
 .dropdown-item:active {
     background-color: $primary-color !important;
 }
@@ -110,4 +114,8 @@ select:focus {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.no-border-radius {
+    border-radius: 0% !important;
 }

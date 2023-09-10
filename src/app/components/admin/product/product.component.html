@@ -34,10 +34,10 @@
                                 <td>{{ product.price | currency:'INR' }}</td>
                                 <td style="width: 15%;">
                                     <button (click)="editProduct(product)" data-bs-toggle="modal"
-                                        data-bs-target="#productModal" class="btn btn-secondary"><i
+                                        data-bs-target="#productModal" class="btn btn-outline-secondary"><i
                                             class="bi bi-pencil-square"></i></button>
                                     &nbsp;
-                                    <button (click)="deleteProduct(product.id)" class="btn btn-danger"><i
+                                    <button (click)="deleteProduct(product.id)" class="btn btn-outline-danger"><i
                                             class="bi bi-trash"></i></button>
 
                                 </td>
@@ -47,8 +47,9 @@
                                     <div class="d-flex justify-content-between p-2">
                                         <ngb-pagination [(page)]="page" [pageSize]="pageSize"
                                             [collectionSize]="products.length"></ngb-pagination>
-                                        <select class="custom-select" style="width: auto;height: 40px;" name="pageSize"
-                                            [(ngModel)]="pageSize">
+                                        <select class="custom-select"
+                                            style="width: auto;height: 40px;width: auto;height: 40px;border-radius: 5px;padding: 8px"
+                                            name="pageSize" [(ngModel)]="pageSize">
                                             <option [ngValue]="2">2 items per page</option>
                                             <option [ngValue]="4">4 items per page</option>
                                             <option [ngValue]="6">6 items per page</option>

@@ -29,17 +29,44 @@
                         {{ authService.displayName }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
-                        <li><a class="dropdown-item" routerLink="/my-dashboard">My Dashboard</a></li>
+                        <li>
+                            <a class="dropdown-item" routerLink="/my-orders">
+                                <i class="bi bi-card-checklist"></i>
+                                My Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="/my-dashboard">
+                                <i class="bi bi-speedometer2"></i> My Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="/wishlist">
+                                <i class="bi bi-heart"></i> My Wishlist
+                            </a>
+                        </li>
                         <ng-container *ngIf="authService.isAdmin">
-                            <li><a class="dropdown-item" routerLink="/admin/orders">Admin Orders</a></li>
-                            <li><a class="dropdown-item" routerLink="/admin/categories">Admin Categories</a></li>
-                            <li><a class="dropdown-item" routerLink="/admin/products">Admin Products</a></li>
-                            <li><a class="dropdown-item" routerLink="/admin/dashboard">Admin Dashboard</a></li>
+                            <li>
+                                <a class="dropdown-item" routerLink="/admin/orders">
+                                    <i class="bi bi-card-checklist"></i> Admin Orders
+                                </a>
+                            </li>
+                            <li><a class="dropdown-item" routerLink="/admin/categories">
+                                    <i class="bi bi-grid"></i> Admin Categories</a></li>
+                            <li>
+                                <a class="dropdown-item" routerLink="/admin/products">
+                                    <i class="bi bi-p-square"></i> Admin Products
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="/admin/dashboard">
+                                    <i class="bi bi-speedometer2"></i> Admin Dashboard
+                                </a>
+                            </li>
                         </ng-container>
                         <li>
                             <a (click)="logout()" class="dropdown-item" style="cursor:pointer">
-                                Log Out
+                                <i class="bi bi-box-arrow-right"></i> Log Out
                             </a>
                         </li>
                     </ul>

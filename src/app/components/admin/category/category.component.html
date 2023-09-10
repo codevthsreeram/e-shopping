@@ -26,12 +26,11 @@
                                 <td>{{ category.name }}</td>
                                 <td style="width: 15%;">
                                     <button (click)="editCategory(category)" data-bs-toggle="modal"
-                                        data-bs-target="#categoryModal" class="btn btn-secondary"><i
+                                        data-bs-target="#categoryModal" class="btn btn-outline-secondary"><i
                                             class="bi bi-pencil-square"></i></button>
                                     &nbsp;
-                                    <button (click)="deleteCategory(category.id)" class="btn btn-danger"><i
+                                    <button (click)="deleteCategory(category.id)" class="btn btn-outline-danger"><i
                                             class="bi bi-trash"></i></button>
-
                                 </td>
                             </tr>
                             <tr>
@@ -39,8 +38,9 @@
                                     <div class="d-flex justify-content-between p-2">
                                         <ngb-pagination [(page)]="page" [pageSize]="pageSize"
                                             [collectionSize]="categories.length"></ngb-pagination>
-                                        <select class="custom-select" style="width: auto;height: 40px;" name="pageSize"
-                                            [(ngModel)]="pageSize">
+                                        <select class="custom-select"
+                                            style="width: auto;height: 40px;border-radius: 5px;padding: 8px"
+                                            name="pageSize" [(ngModel)]="pageSize">
                                             <option [ngValue]="2">2 items per page</option>
                                             <option [ngValue]="4">4 items per page</option>
                                             <option [ngValue]="6">6 items per page</option>

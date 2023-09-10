@@ -89,7 +89,7 @@ export class ProductComponent implements OnInit {
     }
     getCategory(categoryId: string) {
         let _itemIndex = this.categories.findIndex(x => x.id === categoryId);
-        return this.categories[_itemIndex].name;
+        return _itemIndex > -1 ? this.categories[_itemIndex].name : '';
     }
     loadCategories() {
         this._categoryService.read()

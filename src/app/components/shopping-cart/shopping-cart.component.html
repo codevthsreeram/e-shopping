@@ -40,7 +40,8 @@
                     <td style="vertical-align: middle;">
                         <div class="row no-gutters">
                             <div class="col-2">
-                                <button (click)="removeFromCart(item)" class="btn btn-secondary btn-block">
+                                <button (click)="removeFromCart(item)"
+                                    class="btn btn-secondary btn-block no-border-radius">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
                             </div>
@@ -48,7 +49,7 @@
                                 {{ item.quantity }} in cart
                             </div>
                             <div class="col-2">
-                                <button (click)="addToCart(item)" class="btn btn-secondary btn-block">
+                                <button (click)="addToCart(item)" class="btn btn-secondary btn-block no-border-radius">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>

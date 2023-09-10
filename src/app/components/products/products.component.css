@@ -35,3 +35,11 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+.hover-effect {
+  transition: transform .3s;
+}
+
+.hover-effect:hover {
+  transform: scale(1.2);
+}

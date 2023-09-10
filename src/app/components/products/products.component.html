@@ -20,20 +20,37 @@
         <ng-container *ngFor="let product of products; let _index = index">
             <div class="col">
                 <div class="card">
-                    <img class="card-img-top" [src]="product.imageUrl" alt="{{ product.title }}">
+                    <img class="card-img-top hover-effect" [src]="product.imageUrl" alt="{{ product.title }}">
                     <div class="card-body">
                         <h6 class="card-title">{{ product.title }}</h6>
-                        <p class="card-text">{{ product.price | currency:'INR'}}</p>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%;vertical-align: middle;">
+                                    <p class="card-text">{{ product.price | currency:'INR'}}</p>
+                                </td>
+                                <td *ngIf="_authService.displayName" style="width: 50%;text-align: right;">
+                                    <button *ngIf="!wishlistExists(product.id)" style="float: right;"
+                                        class="btn btn-outline-warning" (click)="addToWishlist(product)">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                    <button *ngIf="wishlistExists(product.id)" style="float: right;"
+                                        class="btn btn-outline-warning" (click)="removeFromWishlist(product.id)">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="card-footer">
                         <button *ngIf="getQuantity(product) === 0; else updateQuantity" (click)="addToCart(product)"
-                            class="btn btn-secondary">
+                            class="btn btn-secondary no-border-radius">
                             <i class="bi bi-cart"></i> Add to Cart
                         </button>
                         <ng-template #updateQuantity>
                             <div class="row">
                                 <div class="col-3" style="display: grid;">
-                                    <button (click)=" removeFromCart(product)" class="btn btn-secondary">
+                                    <button (click)=" removeFromCart(product)"
+                                        class="btn btn-secondary no-border-radius">
                                         <i class="bi bi-dash-lg"></i>
                                     </button>
                                 </div>
@@ -41,7 +58,7 @@
                                     {{ getQuantity(product) }} in cart
                                 </div>
                                 <div class="col-3" style="display: grid;">
-                                    <button (click)="addToCart(product)" class="btn btn-secondary">
+                                    <button (click)="addToCart(product)" class="btn btn-secondary no-border-radius">
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>
